@@ -1,0 +1,21 @@
+{
+  "name": "rw-cloudflare-workers",
+  "version": "1.0.0",
+  "description": "Repository for Cloudflare Workers containers designed for Claude Code web",
+  "main": "index.js",
+  "scripts": {
+    "create-worker": "node scripts/create-worker.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "edge",
+    "serverless"
+  ],
+  "author": "myselfgus",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
