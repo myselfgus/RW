@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "create-worker": "node scripts/create-worker.js",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "echo \"No tests yet\" && exit 0",
+    "deploy": "wrangler deploy",
+    "deploy:hello-world": "cd workers/hello-world && npm run deploy",
+    "deploy:api-proxy": "cd workers/api-proxy && npm run deploy",
+    "deploy:claude-agent": "cd workers/claude-agent && npm run deploy",
+    "dev": "wrangler dev"
   },
   "keywords": [
     "cloudflare",

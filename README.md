@@ -139,11 +139,31 @@ npm run create-worker <nome-do-worker>
 ./scripts/test-workers.sh
 ```
 
+### Deploy
+
+Para fazer deploy dos workers:
+
+```bash
+# Deploy do worker principal (claude-agent)
+npm run deploy
+
+# Deploy de workers individuais
+npm run deploy:hello-world
+npm run deploy:api-proxy
+npm run deploy:claude-agent
+
+# Deploy de todos os workers
+./scripts/deploy-all.sh
+```
+
+Para instruções completas de deployment, consulte: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+
 ### Documentação Adicional
 
 - [SETUP.md](docs/SETUP.md) - Guia completo de configuração
 - [WORKERS.md](docs/WORKERS.md) - Documentação de todos os workers
 - [CONTAINERS.md](docs/CONTAINERS.md) - Arquitetura e container images
+- [DEPLOYMENT.md](docs/DEPLOYMENT.md) - Guia completo de deploy
 
 ---
 
@@ -286,11 +306,31 @@ npm run create-worker <worker-name>
 ./scripts/test-workers.sh
 ```
 
+### Deploy
+
+To deploy the workers:
+
+```bash
+# Deploy main worker (claude-agent)
+npm run deploy
+
+# Deploy individual workers
+npm run deploy:hello-world
+npm run deploy:api-proxy
+npm run deploy:claude-agent
+
+# Deploy all workers
+./scripts/deploy-all.sh
+```
+
+For complete deployment instructions, see: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+
 ### Additional Documentation
 
 - [SETUP.md](docs/SETUP.md) - Complete setup guide
 - [WORKERS.md](docs/WORKERS.md) - Documentation for all workers
 - [CONTAINERS.md](docs/CONTAINERS.md) - Architecture and container images
+- [DEPLOYMENT.md](docs/DEPLOYMENT.md) - Complete deployment guide
 
 ---
 
