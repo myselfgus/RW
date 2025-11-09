@@ -13,11 +13,19 @@ Este repositório contém uma coleção de Cloudflare Workers prontos para uso. 
 ```
 RW/
 ├── workers/               # Diretório principal de workers
-│   ├── hello-world/      # Worker de exemplo
+│   ├── hello-world/      # Worker de exemplo básico
 │   ├── api-proxy/        # Worker de proxy de API
+│   ├── claude-agent/     # Worker com integração Claude AI
 │   └── ...               # Outros workers
 ├── shared/               # Código compartilhado entre workers
 ├── docs/                 # Documentação adicional
+│   ├── SETUP.md         # Guia de configuração
+│   ├── WORKERS.md       # Documentação dos workers
+│   └── CONTAINERS.md    # Container images e arquitetura
+├── scripts/              # Scripts utilitários
+│   ├── setup-environment.sh  # Setup inicial
+│   ├── deploy-all.sh         # Deploy de todos os workers
+│   └── test-workers.sh       # Testes locais
 └── README.md            # Este arquivo
 ```
 
@@ -32,6 +40,7 @@ RW/
    ```bash
    npm install -g wrangler
    ```
+5. (Opcional) Chave de API do Anthropic Claude para usar o worker `claude-agent`
 
 #### Configuração Inicial
 
@@ -41,14 +50,35 @@ RW/
    cd RW
    ```
 
-2. Instale as dependências:
+2. Execute o script de setup (recomendado):
    ```bash
-   npm install
+   ./scripts/setup-environment.sh
    ```
 
-3. Autentique com Cloudflare:
+   Ou instale manualmente:
+   ```bash
+   npm install
+   cd workers/hello-world && npm install
+   cd ../api-proxy && npm install
+   cd ../claude-agent && npm install
+   ```
+
+3. Configure variáveis de ambiente:
+   ```bash
+   cp .env.example .env
+   # Edite o arquivo .env com suas credenciais
+   ```
+
+4. Autentique com Cloudflare:
    ```bash
    wrangler login
+   ```
+
+5. (Opcional) Configure secrets para o claude-agent:
+   ```bash
+   cd workers/claude-agent
+   wrangler secret put ANTHROPIC_API_KEY
+   # Cole sua chave de API do Anthropic
    ```
 
 #### Desenvolvendo um Worker
@@ -80,12 +110,40 @@ Este repositório foi estruturado para facilitar o trabalho com Claude Code web:
 2. **Configuração Padronizada**: Todos os workers usam a mesma estrutura de configuração
 3. **Documentação**: Cada worker tem sua própria documentação
 4. **Scripts Npm**: Scripts padronizados para desenvolvimento e deploy
+5. **Claude SDK Integrado**: Worker `claude-agent` com Anthropic SDK pré-configurado
+
+### Workers Disponíveis
+
+- **hello-world**: Worker básico de demonstração
+- **api-proxy**: Proxy reverso com suporte a CORS
+- **claude-agent**: Integração com Claude AI (requer API key do Anthropic)
+
+Para mais detalhes, consulte: [docs/WORKERS.md](docs/WORKERS.md)
 
 ### Criando um Novo Worker
 
 ```bash
 npm run create-worker <nome-do-worker>
 ```
+
+### Scripts Úteis
+
+```bash
+# Setup do ambiente
+./scripts/setup-environment.sh
+
+# Deploy de todos os workers
+./scripts/deploy-all.sh
+
+# Testar workers localmente
+./scripts/test-workers.sh
+```
+
+### Documentação Adicional
+
+- [SETUP.md](docs/SETUP.md) - Guia completo de configuração
+- [WORKERS.md](docs/WORKERS.md) - Documentação de todos os workers
+- [CONTAINERS.md](docs/CONTAINERS.md) - Arquitetura e container images
 
 ---
 
@@ -102,11 +160,19 @@ This repository contains a collection of ready-to-use Cloudflare Workers. Each w
 ```
 RW/
 ├── workers/               # Main workers directory
-│   ├── hello-world/      # Example worker
+│   ├── hello-world/      # Basic example worker
 │   ├── api-proxy/        # API proxy worker
+│   ├── claude-agent/     # Worker with Claude AI integration
 │   └── ...               # Other workers
 ├── shared/               # Shared code between workers
 ├── docs/                 # Additional documentation
+│   ├── SETUP.md         # Setup guide
+│   ├── WORKERS.md       # Workers documentation
+│   └── CONTAINERS.md    # Container images and architecture
+├── scripts/              # Utility scripts
+│   ├── setup-environment.sh  # Initial setup
+│   ├── deploy-all.sh         # Deploy all workers
+│   └── test-workers.sh       # Local tests
 └── README.md            # This file
 ```
 
@@ -121,6 +187,7 @@ RW/
    ```bash
    npm install -g wrangler
    ```
+5. (Optional) Anthropic Claude API key to use the `claude-agent` worker
 
 #### Initial Setup
 
@@ -130,14 +197,35 @@ RW/
    cd RW
    ```
 
-2. Install dependencies:
+2. Run the setup script (recommended):
    ```bash
-   npm install
+   ./scripts/setup-environment.sh
    ```
 
-3. Authenticate with Cloudflare:
+   Or install manually:
+   ```bash
+   npm install
+   cd workers/hello-world && npm install
+   cd ../api-proxy && npm install
+   cd ../claude-agent && npm install
+   ```
+
+3. Configure environment variables:
+   ```bash
+   cp .env.example .env
+   # Edit the .env file with your credentials
+   ```
+
+4. Authenticate with Cloudflare:
    ```bash
    wrangler login
+   ```
+
+5. (Optional) Configure secrets for claude-agent:
+   ```bash
+   cd workers/claude-agent
+   wrangler secret put ANTHROPIC_API_KEY
+   # Paste your Anthropic API key
    ```
 
 #### Developing a Worker
@@ -169,12 +257,40 @@ This repository is structured to facilitate working with Claude Code web:
 2. **Standardized Configuration**: All workers use the same configuration structure
 3. **Documentation**: Each worker has its own documentation
 4. **Npm Scripts**: Standardized scripts for development and deployment
+5. **Claude SDK Integrated**: `claude-agent` worker with pre-configured Anthropic SDK
+
+### Available Workers
+
+- **hello-world**: Basic demonstration worker
+- **api-proxy**: Reverse proxy with CORS support
+- **claude-agent**: Claude AI integration (requires Anthropic API key)
+
+For more details, see: [docs/WORKERS.md](docs/WORKERS.md)
 
 ### Creating a New Worker
 
 ```bash
 npm run create-worker <worker-name>
 ```
+
+### Useful Scripts
+
+```bash
+# Environment setup
+./scripts/setup-environment.sh
+
+# Deploy all workers
+./scripts/deploy-all.sh
+
+# Test workers locally
+./scripts/test-workers.sh
+```
+
+### Additional Documentation
+
+- [SETUP.md](docs/SETUP.md) - Complete setup guide
+- [WORKERS.md](docs/WORKERS.md) - Documentation for all workers
+- [CONTAINERS.md](docs/CONTAINERS.md) - Architecture and container images
 
 ---
 

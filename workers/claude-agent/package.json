@@ -1,0 +1,26 @@
+{
+  "name": "claude-agent-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker with Claude AI Agent integration",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "claude",
+    "ai",
+    "agent"
+  ],
+  "author": "myselfgus",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.0"
+  }
+}
