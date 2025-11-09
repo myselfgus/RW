@@ -1,7 +1,7 @@
 # Main Wrangler Configuration for RW Repository
 # This configuration deploys the claude-agent worker as the primary worker
 
-name = "rw-claude-agent"
+name = "rw"
 main = "workers/claude-agent/src/index.js"
 compatibility_date = "2024-01-01"
 
