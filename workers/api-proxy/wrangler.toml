@@ -1,0 +1,13 @@
+name = "api-proxy"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Uncomment and configure for production deployment
+# account_id = "your-account-id"
+# workers_dev = true
+
+[env.production]
+name = "api-proxy-production"
+
+[env.staging]
+name = "api-proxy-staging"
